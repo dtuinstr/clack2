@@ -70,6 +70,7 @@ package your_team_name.clack.message{
     }
 
     class LoginMessage {
+        - password : String <<final>>
         + LoginMessage(username, password)
     }
 
