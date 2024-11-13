@@ -22,7 +22,7 @@ public abstract class CharacterCipher {
 
     /**
      * Returns the character that is n letters further on in ALPHABET,
-     * with wrap around at the end of ALPHABET. Negative values are
+     * with wrap around at either end of ALPHABET. Negative values are
      * allowed and cause a shift to the left. A shift of 0 returns
      * the original character.
      * @param c the character to shift.
@@ -41,10 +41,13 @@ public abstract class CharacterCipher {
 
     /**
      * Returns the string resulting from shifting each character of str
-     * by n places.
+     * by n places, (positive to right, negative to left), with wrap
+     * around at either end of ALPHABET.
      * @param str the string to shift.
      * @param n the amount to shift each letter.
      * @return the shifted version of str.
+     * @throws IllegalArgumentException if any character in String
+     *      is not in ALPHABET.
      */
     public static String shift(String str, int n) {
         // TODO implement this.
@@ -59,7 +62,7 @@ public abstract class CharacterCipher {
      * @param cleartext
      * @return a version of the cleartext ready for encrypting.
      */
-    abstract String prep(String cleartext);
+    public abstract String prep(String cleartext);
 
     /**
      * Encrypt a string that's been prepared for encryption.
@@ -67,7 +70,7 @@ public abstract class CharacterCipher {
      *                 for encryption.
      * @return the encryption of the preptext.
      */
-    abstract String encrypt(String preptext);
+    public abstract String encrypt(String preptext);
 
     /**
      * Decrypts an encrypted string. The decrypted text should match
@@ -75,5 +78,5 @@ public abstract class CharacterCipher {
      * @param ciphertext the encrypted string to decrypt.
      * @return the decryption of the ciphertext.
      */
-    abstract String decrypt(String ciphertext);
+    public abstract String decrypt(String ciphertext);
 }
